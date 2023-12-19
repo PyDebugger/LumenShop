@@ -2,11 +2,11 @@
     {
         "src": "image/img_2.jpg",
         "alt": "Description of the image 1",
-        "description": "I don't know, some kind of hoodie"
+        "description": "Описание картинки 1"
     },
      {
         "src": "image/img_2.jpg",
         "alt": "Description of the image 2",
-        "description": "test text 2"
+        "description": "Описание картинки 2"
     }
 ]

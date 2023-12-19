@@ -3,5 +3,10 @@
         "src": "image/img_1.jpg",
         "alt": "Description of the image 1",
         "description": "I don't know, some kind of hoodie"
+    },
+     {
+        "src": "image/img_2.jpg",
+        "alt": "Description of the image 2",
+        "description": "тестовый текст"
     }
 ]

@@ -114,7 +114,7 @@ setInterval(createSnowflake, 10);
 
         async function loadImagesAndDescriptions() { // Функция для загрузки изображений и описаний
             try {
-                const response = await fetch('/images.json'); // Укажите правильный путь к вашему JSON-файлу
+                const response = await fetch('images.json'); // Укажите правильный путь к вашему JSON-файлу
                 const jsonData = await response.json(); // Получаем данные в формате JSON
                 jsonData.forEach(addImageWithDescription); // Добавляем изображения с описаниями
             } catch (error) { // Если возникла ошибка, выводим ее в консоль

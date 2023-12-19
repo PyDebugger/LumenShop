@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>✨Lumen Shop✨</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root { /* Переменные для цветов */
+    --clr-neon: hsl(317 100% 54%); /* Неоновый цвет */
+    --clr-bg: hsl(323 21% 16%); /* Цвет фона */
+}
+
+body { /* Стили для тела кнопки главной */
+    margin: 0; /* Убираем отступы */
+    background: var(--clr-bg); /* Цвет фона */
+    font-family: "Balsamiq Sans", cursive; /* Шрифт */
+}
+
+#snow { /* Стили для снежинок */
+    position: fixed; /* Фиксированное позиционирование */
+    top: 100%; /* Положение сверху */
+    left: 100%; /* Положение слева */
+    width: 100%; /* Ширина */
+    height: 100%; /* Высота */
+    pointer-events: none; /* Отключаем события мыши */
+    overflow: auto; /* Включаем прокрутку */
+    z-index: 3; /* Позиция над всеми элементами */
+}
+
+.neon-button { /* Стили для кнопки */
+    transform: translateY(10px);  /* Сдвигаем кнопку вниз на 10px */
+    font-size: 2em; /* Размер шрифта */
+    display: block; /* Блочный элемент */
+    margin: 1em auto; /* Отступы */
+    padding: 0.5em 1em; /* Поля */
+    text-align: center; /* Выравнивание по центру */
+    color: var(--clr-neon); /* Цвет текста */
+    border: 0.125em solid var(--clr-neon); /* Рамка */
+    border-radius: 0.25em;  /* Радиус скругления */
+    text-decoration: none; /* Убираем подчеркивание */
+    box-shadow: 0 0 0.5em var(--clr-neon); /* Тень */
+    text-shadow: 0 0 0.5em var(--clr-neon); /* Тень текста */
+}
+.image-container { /* Стили для контейнера изображения */
+        display: inline-block; /* или flex, block, в зависимости от вашего дизайна */
+        margin: 10px; /* Отступы вокруг изображений */
+        border: 3px solid var(--clr-neon); /* Рамка в стиле неон */
+        box-shadow: 0 0 5px var(--clr-neon); /* Тень в стиле неон */
+    }
+
+    .image-container img {
+        display: block; /* Убрать лишние отступы вокруг изображений */
+        width: 100%; /* Задаем ширину для адаптивности */
+        height: auto; /* Высота изменяется пропорционально ширине */
+    }
+
+    </style>
+</head>
+
+<body>
+    <a href="https://www.instagram.com/_lumen_shop_/" class="neon-button">Lumen Shop</a>
+    <div id="snow"></div>
+    <script> /* Скрипт для снежинок */
+        const maxSnowflakes = 1000; // Максимальное количество снежинок
+const snowflakesContainer = document.getElementById("snow"); // Контейнер для снежинок
+
+function createSnowflake() { // Функция для создания снежинок
+    const snowflake = document.createElement("div"); // Создаем элемент div
+    // Задаем стили для снежинки
+    snowflake.style.cssText = `
+        position: fixed;
+        top: ${Math.random() * window.innerWidth}px;
+        left: ${Math.random() * window.innerWidth}px;
+        opacity: ${Math.random()};
+        font-size: ${Math.random() * 24 + 10}px;
+        color: white;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+        pointer-events: none;
+        user-select: none;
+    `;
+    // Задаем текст для снежинки это просто символ снежинки)
+    snowflake.textContent = '❄';
+    snowflakesContainer.appendChild(snowflake);
+    // Удаляем снежинку через 1 секунду
+    setTimeout(() => {
+        snowflake.remove();
+    }, 1000);
+}
+// Создаем снежинки каждые 10 мс
+setInterval(createSnowflake, 10);
+     function addImageWithDescription(imageData) { // Функция для добавления изображения с описанием
+            const imageContainer = document.createElement("div"); // Создаем контейнер для изображения
+            imageContainer.classList.add("image-container"); // Добавляем класс для стилизации
+
+            const image = document.createElement("img"); // Создаем элемент изображения
+            image.src = imageData.src; // Устанавливаем путь к изображению
+            image.alt = imageData.alt; // Устанавливаем альтернативный текст
+            image.style.width = "314px"; // Задайте подходящий размер
+            image.style.height = "555px"; // Задайте подходящий размер
+            image.style.border = "8px solid white"; // Установите нужные стили для рамки
+            image.style.margin = "5px"; // Отступы
+
+            const description = document.createElement("p"); // Создаем элемент абзаца
+            description.textContent = imageData.description; // Устанавливаем описание
+            description.style.color = "white"; // Задайте подходящий цвет текста
+            description.style.textAlign = "center"; // Выравнивание по центру
+
+            imageContainer.appendChild(image);             // Сначала добавляем изображение в контейнер
+            imageContainer.appendChild(description);             // Под изображением добавляем описание
+            document.body.appendChild(imageContainer);             // Добавляем контейнер в тело документа
+
+        }
+
+        async function loadImagesAndDescriptions() { // Функция для загрузки изображений и описаний
+            try {
+                const response = await fetch('/images.json'); // Укажите правильный путь к вашему JSON-файлу
+                const jsonData = await response.json(); // Получаем данные в формате JSON
+                jsonData.forEach(addImageWithDescription); // Добавляем изображения с описаниями
+            } catch (error) { // Если возникла ошибка, выводим ее в консоль
+                console.error("Ошибка при загрузке изображений: ", error); // Выводим ошибку в консоль
+            }
+        }
+
+        // Вызываем функцию загрузки после загрузки DOM
+        document.addEventListener('DOMContentLoaded', loadImagesAndDescriptions); // Вызываем функцию загрузки после загрузки DOM
+
+
+    </script>
+</body>
+</html>

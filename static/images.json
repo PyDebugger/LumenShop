@@ -1,0 +1,42 @@
+[
+    {
+        "src": "static/image/img_1.jpg",
+        "alt": "Description of the image 1",
+        "description": "123451234512345"
+    },
+    {
+        "src": "static/image/img_2.jpg",
+        "alt": "Description of the image 2",
+        "description": "123451234512345"
+    },
+    {
+        "src": "static/image/img_1.jpg",
+        "alt": "Description of the image 3",
+        "description": "12345123451234512"
+    },
+    {
+        "src": "static/image/img_1.jpg",
+        "alt": "Description of the image 3",
+        "description": "123451234512"
+    },
+    {
+        "src": "static/image/img_1.jpg",
+        "alt": "Description of the image 3",
+        "description": "123451234"
+    },
+    {
+        "src": "\\static\\image\\img_69.jpg",
+        "alt": "Описание изображения 69",
+        "description": "Иьибибибибби"
+    },
+    {
+        "src": "\\static\\image\\img_179.jpg",
+        "alt": "Description of the image 179",
+        "description": "text takoi"
+    },
+    {
+        "src": "\\static\\image\\img_197.jpg",
+        "alt": "Description of the image 197",
+        "description": "рыбка 100 рублей"
+    }
+]

@@ -1,11 +1,6 @@
 [
     {
         "src": "image/img_2.jpg",
-        "alt": "Description of the image 1",
-        "description": "text image 1"
-    },
-    {
-        "src": "image/img_2.jpg",
         "alt": "Description of the image 2",
         "description": "text image 2"
     },

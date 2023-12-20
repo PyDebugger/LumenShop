@@ -5,6 +5,7 @@ import os
 image_url = ""
 text_image = ""
 status = False
+status_delete = False
 # Запускаю бота в телеграме
 bot = telebot.TeleBot('6673545734:AAFdjeDQzWq9jVcrMLZWAvSLLLCQ1HOusCY')
 # боту нужно скинуть картинку, которую он сохранит в папку image и отправит в ответ пользователю
@@ -23,9 +24,28 @@ def start(message):
 # создать call back кнопки, удалить изображение или загрузить новое
 @bot.callback_query_handler(func=lambda call: True)
 def callback(call):
-    if call.data == 'delete':
+    global status_delete  # глобальная переменная, которая будет использоваться внутри функции
 
+    with open('images.json', 'r') as file:
+        data_img = json.loads(file.read())
+
+    if call.data == 'delete':
+        global status_delete # глобальная переменная, которая будет использоваться внутри функции
+        status_delete = True # меняю статус на True
+        # показать все изображения и тексты функцией show и спросить какой номер удалить
+        show(call.message)
+
+    if call.data in [str(i+1) for i in range(len(data_img))]: # если пользователь выбрал номер изображения
+        # удалить изображение и текст из json файла
+        del data_img[int(call.data)-1]
+        # открываю json файл на запись image.json который находится в папке static и записываю в него новое содержимое
+        with open('images.json', 'w',encoding="utf-8") as file:
+            file.write(json.dumps(data_img, indent=4, ensure_ascii=True))
         bot.send_message(call.message.chat.id, 'Изображение удалено')
+        status_delete = False # меняю статус на False
+
+
+
 
     if call.data == 'upload':
         bot.send_message(call.message.chat.id, 'Загрузите новое изображение')
@@ -83,5 +103,25 @@ def put_text(message):
     global status  # глобальная переменная, которая будет использоваться внутри функции
     status = False
 
+# Вывести все изображения и тексты из json файла и пронумеровать их
+@bot.message_handler(commands=['show'])
+def show(message):
+    if status_delete == True: # если пользователь хочет удалить изображение
+        with open('images.json', 'r') as file:
+            data_img = json.loads(file.read())
+        for i in range(len(data_img)):
+            bot.send_message(message.chat.id, f"{i+1}. {data_img[i]['description']}")
+            bot.send_photo(message.chat.id, photo=open(data_img[i]['src'], 'rb'))
+        # создать инлайн кнопки ровно столько сколько изображений в json файле
+        keyboard = telebot.types.InlineKeyboardMarkup()
+        # генератором создаю кнопки
+        keyboard.add(*[telebot.types.InlineKeyboardButton(text=f"{i+1}", callback_data=f"{i+1}") for i in range(len(data_img))])
+        bot.send_message(message.chat.id, 'Выберите номер изображения:', reply_markup=keyboard)
+
+
+
+
 if __name__ == "__main__":
     bot.polling(none_stop=True, interval=0)
+
+

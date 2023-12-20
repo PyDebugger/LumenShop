@@ -2,6 +2,8 @@ import telebot
 import json
 from random import randint
 import os
+import subprocess
+
 image_url = ""
 text_image = ""
 status = False
@@ -41,6 +43,26 @@ def callback(call):
         # открываю json файл на запись image.json который находится в папке static и записываю в него новое содержимое
         with open('images.json', 'w',encoding="utf-8") as file:
             file.write(json.dumps(data_img, indent=4, ensure_ascii=True))
+
+            # Функция для выполнения команды в терминале
+            def run_command(command):
+                try:
+                    subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT)
+                except subprocess.CalledProcessError as e:
+                    print("Ошибка при выполнении команды:", e.output.decode())
+
+            # Инициализация Git репозитория
+            run_command("git init")
+
+            # Добавление файлов в репозиторий
+            # Для добавления всех файлов из папки image и файла images.json
+            run_command("git add image/* images.json")
+
+            # Commit изменений
+            run_command('git commit -am "result test"')
+
+            # Push изменений
+            run_command("git push")
 
         bot.send_message(call.message.chat.id, 'Изображение удалено')
         print("Удалено изображение")
@@ -99,7 +121,27 @@ def put_text(message):
         # открываю json файл на запись image.json который находится в папке static и записываю в него новое содержимое
         with open('images.json', 'w',encoding="utf-8") as file:
             file.write(json.dumps(data_img, indent=4, ensure_ascii=True))
-            print("загрузить новое изображение")
+
+            # Функция для выполнения команды в терминале
+            def run_command(command):
+                try:
+                    subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT)
+                except subprocess.CalledProcessError as e:
+                    print("Ошибка при выполнении команды:", e.output.decode())
+
+            # Инициализация Git репозитория
+            run_command("git init")
+
+            # Добавление файлов в репозиторий
+            # Для добавления всех файлов из папки image и файла images.json
+            run_command("git add image/* images.json")
+
+            # Commit изменений
+            run_command('git commit -am "result test"')
+
+            # Push изменений
+            run_command("git push")
+            print("загрузили новое изображение")
 
 
 

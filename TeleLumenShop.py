@@ -67,12 +67,12 @@ def handle_docs_photo(message):
         # получить текущий путь директории
         file_image = f'{os.getcwd()}\image' # указываю путь куда сохранять файл
         rand_numbers = str(randint(1,2**8)) # генерирую случайное число
-        src = file_image + "\img_"+rand_numbers+".jpg"; # указываю путь куда сохранять файл
+        src = file_image + "/img_"+rand_numbers+".jpg"; # указываю путь куда сохранять файл
         with open(src, 'wb') as new_file: # открываю файл на запись
             new_file.write(downloaded_file) # записываю в него скачанный файл
 
         bot.reply_to(message, "Файл сохранён, теперь введите текст") # отправляю сообщение пользователю
-        image_url = "image\img_"+rand_numbers+".jpg" # сохраняю путь к картинке
+        image_url = "image/img_"+rand_numbers+".jpg" # сохраняю путь к картинке
         global status # глобальная переменная, которая будет использоваться внутри функции
         status = True # меняю статус на True
 

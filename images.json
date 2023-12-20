@@ -8,5 +8,30 @@
         "src": "image\\img_227.jpg",
         "alt": "Description of the image ",
         "description": "TEXT"
+    },
+    {
+        "src": "image\\img_21.jpg",
+        "alt": "Description of the image ",
+        "description": "Hoodie 5600 tg"
+    },
+    {
+        "src": "image\\img_193.jpg",
+        "alt": "Description of the image ",
+        "description": "Corset 3400 tg"
+    },
+    {
+        "src": "image\\img_108.jpg",
+        "alt": "Description of the image ",
+        "description": "TEST"
+    },
+    {
+        "src": "image\\img_46.jpg",
+        "alt": "Description of the image ",
+        "description": "Sumka kakayta"
+    },
+    {
+        "src": "image\\img_233.jpg",
+        "alt": "Description of the image ",
+        "description": "sumka"
     }
 ]

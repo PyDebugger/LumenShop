@@ -41,6 +41,9 @@ def callback(call):
         # открываю json файл на запись image.json который находится в папке static и записываю в него новое содержимое
         with open('images.json', 'w',encoding="utf-8") as file:
             file.write(json.dumps(data_img, indent=4, ensure_ascii=True))
+
+        with open('/LumenShop/images.json', 'w',encoding="utf-8") as file:
+            file.write(json.dumps(data_img, indent=4, ensure_ascii=True))
         bot.send_message(call.message.chat.id, 'Изображение удалено')
         status_delete = False # меняю статус на False
 
@@ -97,6 +100,11 @@ def put_text(message):
         # открываю json файл на запись image.json который находится в папке static и записываю в него новое содержимое
         with open('images.json', 'w',encoding="utf-8") as file:
             file.write(json.dumps(data_img, indent=4, ensure_ascii=True))
+
+        with open('LumenShop/images.json', 'w',encoding="utf-8") as file:
+            file.write(json.dumps(data_img, indent=4, ensure_ascii=True))
+
+
 
     else: # если длина текста больше 40 символов или пустой
         bot.reply_to(message, "Текст больше 40 символов или пустой") # отправляю сообщение пользователю

@@ -9,7 +9,7 @@ text_image = ""
 status = False
 status_delete = False
 # Запускаю бота в телеграме
-bot = telebot.TeleBot('6673545734:AAFdjeDQzWq9jVcrMLZWAvSLLLCQ1HOusCY')
+bot = telebot.TeleBot('____') # сука, случайно слил его ((
 # боту нужно скинуть картинку, которую он сохранит в папку image и отправит в ответ пользователю
 
 # при запуске бота, отобразить инлайн кнопки, удалить изображение или загрузить новое
